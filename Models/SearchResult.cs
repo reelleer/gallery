@@ -10,6 +10,8 @@ namespace Gallary.Models
     {
         public string Response { get; set; }
 
+        public string Error { get; set; }
+
         [JsonProperty(PropertyName = "results-for")]
         public string ResultsFor { get; set; }
 

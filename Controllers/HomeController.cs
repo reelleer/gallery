@@ -1,4 +1,5 @@
-﻿using Gallary.Service;
+﻿using Gallary.Models;
+using Gallary.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,20 @@ namespace Gallary.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index(string name)
+        public async Task<ActionResult> Index(string query)
         {
+            SearchResult searchResult;
 
-            var superHeroService = new SuperHeroService();
-            var searchResult = await superHeroService.Search(
-                string.IsNullOrWhiteSpace(name) ?
-                    Properties.Settings.Default.DEFAULT_NAME :
-                    name
-            );
+            if (string.IsNullOrWhiteSpace(query))
+                searchResult = new SearchResult()
+                {
+                    Response = "surcess"
+                };
+            else
+            {
+                var superHeroService = new SuperHeroService();
+                searchResult = await superHeroService.SearchAsync(query);
+            }
 
             return View(searchResult);
         }

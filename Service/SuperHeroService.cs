@@ -20,11 +20,23 @@ namespace Gallary.Service
             _baseUri = baseUri.EndsWith("/") ? baseUri : baseUri + "/";
         }
 
-        public async Task<SearchResult> Search(string name)
+        public async Task<SearchResult> SearchAsync(string name)
         {
             var uri = $"{_baseUri}search/{name}";
 
-            return await WebApiCall.GetListItemsAsync<SearchResult>(uri);
+            var result = await WebApiCall.GetListItemsAsync<SearchResult>(uri);
+
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine(
+                $"SearchResult.Response = {result.Response}"
+            );
+
+            System.Diagnostics.Debug.WriteLine(
+                $"SearchResult.Response.Result = {result.Results?.Count ?? 0}"
+            );
+#endif      
+
+            return result;
         }
 
         public async void Test()
