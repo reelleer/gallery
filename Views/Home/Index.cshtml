@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Gallary.Models.SearchResult
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -29,3 +30,17 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<ul>
+    @foreach (var hero in Model.Results)
+    {
+    <li>
+        @hero.Name
+        <a href="@hero.Image.Url">Foto</a>
+    </li>
+    }
+</ul>
+
+<p>
+    @Model.ResultsFor
+</p>
