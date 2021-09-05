@@ -15,6 +15,6 @@ namespace Gallary.Models
         [JsonProperty(PropertyName = "results-for")]
         public string ResultsFor { get; set; }
 
-        public List<Hero> Results { get; set; }
+        public List<Character> Results { get; set; }
     }
 }

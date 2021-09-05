@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Gallary.Models
 {
-    public class Hero
+    public class Character
     {
         public int Id { get; set; }
 
