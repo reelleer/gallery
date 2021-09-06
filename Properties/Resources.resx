@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CharacterIdNotFound" xml:space="preserve">
+    <value>Character not found.</value>
+  </data>
+  <data name="NotFoundMessage" xml:space="preserve">
+    <value>I don't want leave you alone.</value>
+  </data>
   <data name="WebApiCallError" xml:space="preserve">
     <value>The call to {0} failed with status code: {1}</value>
   </data>

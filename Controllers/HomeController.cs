@@ -35,6 +35,11 @@ namespace Gallary.Controllers
         {
             var details = await Service.GetDetailsAsync(id);
 
+            if(details.Response == "error")
+            {
+                return NotFound(Properties.Resources.CharacterIdNotFound);
+            }
+
             if (Request.UrlReferrer?.Query != null)
             {
                 var queries = HttpUtility.ParseQueryString(Request.UrlReferrer.Query);
@@ -45,11 +50,9 @@ namespace Gallary.Controllers
             return View(details);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+        public ActionResult NotFound()
+        {   
+            return NotFound(Properties.Resources.NotFoundMessage);
         }
 
         private SuperHeroService Service
@@ -57,6 +60,15 @@ namespace Gallary.Controllers
             get {
                 return _superHeroService ?? (_superHeroService = new SuperHeroService());
             }
+        }
+
+        private ActionResult NotFound(string message)
+        {
+            ViewBag.Message = message;
+
+            Response.StatusCode = 404; //No found
+
+            return View("_NotFound");
         }
     }
 }

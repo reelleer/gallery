@@ -61,6 +61,24 @@ namespace Gallary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Character not found..
+        /// </summary>
+        internal static string CharacterIdNotFound {
+            get {
+                return ResourceManager.GetString("CharacterIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I don&apos;t want leave you alone..
+        /// </summary>
+        internal static string NotFoundMessage {
+            get {
+                return ResourceManager.GetString("NotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The call to {0} failed with status code: {1}.
         /// </summary>
         internal static string WebApiCallError {

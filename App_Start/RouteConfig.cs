@@ -9,9 +9,15 @@ namespace Gallary
 {
     public class RouteConfig
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        public static void RegisterRoutes(RouteCollection routes)   
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Home",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Details",
@@ -20,10 +26,20 @@ namespace Gallary
             );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                name: "NoFound",
+                url: "{*url}",
+                defaults: new { controller = "Home", action = "NotFound" }
             );
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { 
+            //        controller = "Home",
+            //        action = "Index",
+            //        id = UrlParameter.Optional
+            //    }
+            //);
         }
     }
 }
