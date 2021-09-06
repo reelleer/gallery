@@ -11,6 +11,7 @@ namespace Gallary.Controllers
 {
     public class HomeController : Controller
     {
+        SuperHeroService _superHeroService;
         public async Task<ActionResult> Index(string query)
         {
             SearchResult searchResult;
@@ -22,18 +23,17 @@ namespace Gallary.Controllers
                 };
             else
             {
-                var superHeroService = new SuperHeroService();
-                searchResult = await superHeroService.SearchAsync(query);
+                searchResult = await Service.SearchAsync(query);
             }
 
             return View(searchResult);
         }
 
-        public ActionResult About()
+        public async Task<ActionResult> About(int id)
         {
-            ViewBag.Message = "Your application description page.";
+            var details = await Service.GetDetailsAsync(id);
 
-            return View();
+            return View(details);
         }
 
         public ActionResult Contact()
@@ -41,6 +41,13 @@ namespace Gallary.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private SuperHeroService Service
+        {
+            get {
+                return _superHeroService ?? (_superHeroService = new SuperHeroService());
+            }
         }
     }
 }

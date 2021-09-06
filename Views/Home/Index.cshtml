@@ -23,7 +23,10 @@
     @foreach (var character in Model.Results)
     {
     <article class="col-xs-6 col-md-3">
-        <a href="#" class="thumbnail">
+        <a
+           href="@Url.RouteUrl("Details", new { id = character.Id })"
+           class="thumbnail"
+        >
             <img src="@character.Image.Url" alt="@character.Name">
         </a>
         <header class="hero__title">

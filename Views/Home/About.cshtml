@@ -1,7 +1,60 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿@model Gallary.Models.DetailsResult
+@{
+    ViewBag.Title = $"About " + Model.Name;
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<article class="row margin-top well">
+    <header class="col-sm-5 col-md-3">
+        <img src="@Model.Image.Url" alt="@Model.Name" class="img-thumbnail">
+    </header>
+    <div class="col-sm-7 col-md-9">
+        <p>
+            <strong>
+                @Html.DisplayNameFor(m => m.Biography.FullName)
+            </strong>
+        </p>
+        <p>
+            @Html.DisplayFor(m => m.Biography.FullName)<text>.</text>
+        </p>
+        <p>
+            <strong>
+                @Html.DisplayNameFor(m => m.Biography.AlterEgos)
+            </strong>
+        </p>
+        <p>
+            @Html.DisplayFor(m => m.Biography.AlterEgos)
+        </p>
+        <p>
+            <strong>
+                @Html.DisplayNameFor(m => m.Biography.Aliases)
+            </strong>
+        </p>
+        <p>
+            @string.Join(", ", Model.Biography.Aliases)
+        </p>
+        <p>
+            <strong>
+                @Html.DisplayNameFor(m => m.Biography.PlaceOfBirth)
+            </strong>
+        </p>
+        <p>
+            @Html.DisplayFor(m => m.Biography.PlaceOfBirth)&nbsp;
+        </p>
+        <p>
+            <strong>
+                @Html.DisplayNameFor(m => m.Biography.FirstApperance)
+            </strong>
+        </p>
+        <p>
+            @Html.DisplayFor(m => m.Biography.FirstApperance)&nbsp;
+        </p>
+        <p>
+            <strong>
+                @Html.DisplayNameFor(m => m.Biography.Publisher)
+            </strong>
+        </p>
+        <p>
+            @Html.DisplayFor(m => m.Biography.Publisher)
+        </p>
+    </div>
+</article>

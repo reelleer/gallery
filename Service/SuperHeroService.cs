@@ -39,6 +39,15 @@ namespace Gallary.Service
             return result;
         }
 
+        public async Task<DetailsResult> GetDetailsAsync(int id)
+        {
+            var uri = $"{_baseUri}{id}";
+
+            var result = await WebApiCall.GetListItemsAsync<DetailsResult>(uri);
+
+            return result;
+        }
+
         public async void Test()
         {
             var content = await WebApiCall.GetContentAsync($"{_baseUri}664");
