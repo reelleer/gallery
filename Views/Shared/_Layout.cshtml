@@ -15,12 +15,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Gallary", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                @*<ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
+                </ul>*@
+                <form action="/" class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            name="query"
+                            class="form-control"
+                            placeholder="Search"
+                            value="@ViewBag.Query"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
             </div>
         </div>
     </div>
@@ -28,7 +41,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Gallary</p>
         </footer>
     </div>
 

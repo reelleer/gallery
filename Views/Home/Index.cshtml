@@ -3,30 +3,21 @@
     ViewBag.Title = "Gallary";
 }
 
+
 <div class="row margin-top">
+    @if (Model.Response == "error")
+    {
     <div class="col-sm-12">
-        <form action="/" method="post">
-            <input type="text"
-                   name="query"
-                   value="@Model.ResultsFor"
-                   required />
-        </form>
-        @if (Model.Response == "error")
-        {
-            <p class="h2">Got goose bumps! @(Model.Error).</p>
-        }
+        <p class="h2">Got goose bumps! @(Model.Error).</p>
     </div>
-</div>
+    }
 @if (Model.ResultsFor != null)
 {
-<div class="row margin-top">
-    @foreach (var character in Model.Results)
+    foreach (var character in Model.Results)
     {
     <article class="col-xs-6 col-md-3">
-        <a
-           href="@Url.RouteUrl("Details", new { id = character.Id })"
-           class="thumbnail"
-        >
+        <a href="@Url.RouteUrl("Details", new { id = character.Id })"
+           class="thumbnail">
             <img src="@character.Image.Url" alt="@character.Name">
         </a>
         <header class="hero__title">
@@ -34,6 +25,6 @@
         </header>
     </article>
     }
-</div>
 }
+</div>
 

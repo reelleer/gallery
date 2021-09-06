@@ -26,12 +26,21 @@ namespace Gallary.Controllers
                 searchResult = await Service.SearchAsync(query);
             }
 
+            ViewBag.Query = query;
+
             return View(searchResult);
         }
 
         public async Task<ActionResult> About(int id)
         {
             var details = await Service.GetDetailsAsync(id);
+
+            if (Request.UrlReferrer?.Query != null)
+            {
+                var queries = HttpUtility.ParseQueryString(Request.UrlReferrer.Query);
+
+                ViewBag.Query = queries.Get("query") ?? "";
+            }
 
             return View(details);
         }
