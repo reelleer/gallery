@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Gallary.Models
 {
-    public class SearchResult
+    public class SearchResult : IResult
     {
         public string Response { get; set; }
 

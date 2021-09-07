@@ -9,13 +9,28 @@ using System.Web;
 
 namespace Gallary.Service
 {
-    public class WebApiCall
+    public interface IWebApiCall
     {
-        public static async Task<string> GetContentAsync(string requestUri) 
+        Task<string> GetContentAsync(string requestUri);
+        Task<T> GetListItemsAsync<T>(string requestUri) where T : class, new();
+
+        TimeSpan Timeout { get; set; }
+    }
+
+    public class WebApiCall : IWebApiCall
+    {
+        public WebApiCall()
+        {
+            Timeout = TimeSpan.FromSeconds(30);
+        }
+
+        public TimeSpan Timeout { get; set; }
+
+        public virtual async Task<string> GetContentAsync(string requestUri)
         {
             using (var client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromSeconds(2);
+                client.Timeout = Timeout;
 
                 HttpResponseMessage response;
 
@@ -23,9 +38,24 @@ namespace Gallary.Service
                 {
                     response = await client.GetAsync(requestUri);
                 }
-                catch (Exception)
+                catch (HttpRequestException ex)
                 {
-                    throw;
+                    var responde = new { response = "error", error = ex.Message };
+
+                    return JsonConvert.SerializeObject(responde);
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    System.Diagnostics.Debug.WriteLine(
+                        $"Execption.GetType = {ex.GetType()}"
+                    );
+
+                    System.Diagnostics.Debug.WriteLine(
+                        $"Execption.Messgae = {ex.Message}"
+                    );
+#endif
+                    throw ex;
                 }
 
                 if (!response.IsSuccessStatusCode)
@@ -43,7 +73,7 @@ namespace Gallary.Service
                 return content;
             }
         }
-        public static async Task<T> GetListItemsAsync<T>(string requestUri) where T : class, new()
+        public virtual async Task<T> GetListItemsAsync<T>(string requestUri) where T : class, new()
         {
             var content = await GetContentAsync(requestUri);
 

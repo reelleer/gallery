@@ -10,21 +10,26 @@ namespace Gallary.Service
     public class SuperHeroService
     {
         readonly string _baseUri;
+        readonly IWebApiCall _webApiCall;
 
         public SuperHeroService() :
-            this(Properties.Settings.Default.SUPER_HERO_API_BASE_URI)
+            this(
+                Properties.Settings.Default.SUPER_HERO_API_BASE_URI,
+                new WebApiCall()
+            )
         { }
 
-        public SuperHeroService(string baseUri)
+        public SuperHeroService(string baseUri, IWebApiCall webApiCall)
         {
             _baseUri = baseUri.EndsWith("/") ? baseUri : baseUri + "/";
+            _webApiCall = webApiCall;
         }
 
         public async Task<SearchResult> SearchAsync(string name)
         {
             var uri = $"{_baseUri}search/{name}";
 
-            var result = await WebApiCall.GetListItemsAsync<SearchResult>(uri);
+            var result = await _webApiCall.GetListItemsAsync<SearchResult>(uri);
 
 #if DEBUG
             System.Diagnostics.Debug.WriteLine(
@@ -43,14 +48,14 @@ namespace Gallary.Service
         {
             var uri = $"{_baseUri}{id}";
 
-            var result = await WebApiCall.GetListItemsAsync<DetailsResult>(uri);
+            var result = await _webApiCall.GetListItemsAsync<DetailsResult>(uri);
 
             return result;
         }
 
         public async void Test()
         {
-            var content = await WebApiCall.GetContentAsync($"{_baseUri}664");
+            var content = await _webApiCall.GetContentAsync($"{_baseUri}664");
 
             System.Diagnostics.Debug.WriteLine(content);
         }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Gallary.Models
 {
-    public class DetailsResult: CharacterDetails
+    public class DetailsResult: CharacterDetails, IResult
     {
         public string Response { get; set; }
 
