@@ -36,6 +36,6 @@ namespace Gallary.Models
         public string EyeColor { get; set; }
         
         [JsonProperty("hair-color")]
-        public string Haircolor { get; set; }
+        public string HairColor { get; set; }
     }
 }

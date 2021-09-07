@@ -42,11 +42,11 @@ namespace Gallary.Models
 
         public string[] Aliases { get; set; }
 
-        [JsonProperty("place-or-birth")]
+        [JsonProperty("place-of-birth")]
         public string PlaceOfBirth { get; set; }
 
-        [JsonProperty("first-apperance")]
-        public string FirstApperance { get; set; }
+        [JsonProperty("first-appearance")]
+        public string FirstAppearance { get; set; }
 
         public string Publisher { get; set; }
 
