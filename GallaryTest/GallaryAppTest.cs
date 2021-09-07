@@ -12,20 +12,21 @@ namespace GallaryTest
         [TestMethod]
         public async Task WebApiCall_HttpError()
         {
-            var webApiCall = new WebApiCall();
+            var webApiCall = new WebApiCall
+            {
+                Timeout = TimeSpan.FromSeconds(10)
+            };
 
-            webApiCall.Timeout = TimeSpan.FromSeconds(10);
-
-            var content = await webApiCall.GetContentAsync("https://notadmain.dotcom.hello");
+            var content = await webApiCall.GetContentAsync("https://notadomain.dotcom.hello");
 
             var result = JsonConvert.DeserializeObject<SimpleResult>(content);
 
-            Assert.AreEqual<string>("error", result.Response);
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(result.Error), result.Error);
+            Assert.AreEqual<string>("exception", result.Response);
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(result.Error), "There is not message");
         }
 
         [TestMethod]
-        public async Task Services_SaearchResults()
+        public async Task Services_SearchResults()
         {
             var apiCall = new MockWebApiCall();
 

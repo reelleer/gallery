@@ -19,7 +19,7 @@ namespace Gallary.Controllers
             if (string.IsNullOrWhiteSpace(query))
                 searchResult = new SearchResult()
                 {
-                    Response = "surcess"
+                    Response = "success"
                 };
             else
             {

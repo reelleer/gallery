@@ -1,7 +1,17 @@
-﻿@model Gallary.Models.DetailsResult
+﻿@using Gallary.Helpers
+@model Gallary.Models.DetailsResult
 @{
     ViewBag.Title = $"About {Model.Name}";
 }
+
+@if (Model.Response != "success")
+{
+<div class="row my-3">
+    <div class="col">@Html.Alert(Model.Error, AlertTypeEnum.Info)</div>
+</div>
+}
+else
+{
 <h1 class="mt-4"><span class="text-muted">About</span> @Model.Name</h1>
 <hr />
 <article class="row mt-4">
@@ -121,3 +131,4 @@
         </div>
     </div>
 </article>
+}
