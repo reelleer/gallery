@@ -25,7 +25,7 @@ namespace Gallary.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://superheroapi.com/api/xxxxxxxx/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://superheroapi.com/api/10158373962118715/")]
         public string SUPER_HERO_API_BASE_URI {
             get {
                 return ((string)(this["SUPER_HERO_API_BASE_URI"]));
