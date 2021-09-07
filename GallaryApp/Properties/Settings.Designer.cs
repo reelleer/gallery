@@ -25,19 +25,10 @@ namespace Gallary.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://superheroapi.com/api/10158373962118715/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://superheroapi.com/api/xxxxxx/")]
         public string SUPER_HERO_API_BASE_URI {
             get {
                 return ((string)(this["SUPER_HERO_API_BASE_URI"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Batman")]
-        public string DEFAULT_NAME {
-            get {
-                return ((string)(this["DEFAULT_NAME"]));
             }
         }
     }

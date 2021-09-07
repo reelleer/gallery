@@ -40,7 +40,7 @@ namespace Gallary.Service
                 }
                 catch (HttpRequestException ex)
                 {
-                    var responde = new { response = "error", error = ex.Message };
+                    var responde = new { response = "exception", error = ex.Message };
 
                     return JsonConvert.SerializeObject(responde);
                 }
