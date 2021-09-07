@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace Gallary
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class GallaryApp : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
