@@ -1,0 +1,46 @@
+﻿@using Gallery.Helpers
+@model Gallery.Models.SearchResult
+@{
+    ViewBag.Title = "Gallery";
+}
+
+ @if (Model.Response != "success")
+{
+<div class="row my-3">
+    <div class="col">
+        @Html.Alert(Model.Error, AlertTypeEnum.Info)
+    </div>
+</div>
+}
+
+@if (Model.ResultsFor != null)
+{
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 my-2">
+    @foreach (var character in Model.Results)
+    {
+    <article class="col">
+        <div class="card shadow-sm">
+        <a href="@Url.RouteUrl("Details", new { id = character.Id })">
+            <img src="@character.Image.Url" alt="@character.Name" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title card__title">
+                    <strong>@character.Name</strong> (@character.Appearance.Gender)
+                </h5>
+            </div>
+        </a>
+        </div>
+    </article>
+    }
+</div>
+} else if(Model.Response == "success")
+{
+<div class="row my-3">
+    <div class="col">
+        <h1>Welcome.</h1>
+        <p>You are close to get top secret information.</p>
+        <p>Type your favorite character name at the search box.</p>
+    </div>
+</div>
+}
+
+
